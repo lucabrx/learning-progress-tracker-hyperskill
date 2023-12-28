@@ -1,39 +1,39 @@
 package org.learningProgressTracker;
 
+// Learning Progress Tracker
+//> add students
+//Enter student credentials or 'back' to return:
+//> John Doe jdoe@yahoo.com
+//The student has been added.
+//> Jane Spark janes@gmail.com
+//The student has been added.
+//> back
+//Total 2 students have been added.
+//> list
+//Students:
+//10000
+//10001
+//> add points
+//Enter an id and points or 'back' to return:
+//> 1000 10 10 5 8
+//No student is found for id=1000.
+//> 10001 10 10 5 8
+//Points updated.
+//> 10001 5 8 7 3
+//Points updated.
+//> 10000 7 7 7 7 7
+//Incorrect points format.
+//> 10000 -1 2 2 2
+//Incorrect points format.
+//> 10000 ? 1 1 1
+//Incorrect points format.
+//> back
+//> exit
+//Bye!
 public class Main {
-    final static String EXIT = "exit";
-    final static String BACK = "back";
-    final static String ADD = "add students";
-
-
     public static void main(String[] args) {
-        ClassRoom classRoom = new ClassRoom();
-        System.out.println("Learning Progress Tracker");
-        while (true) {
-            switch (Utils.getLine()) {
-                case "" -> System.out.println("No input.");
-                case EXIT -> {
-                    System.out.println("Bye!");
-                    return;
-                }
-                case BACK -> System.out.println("Enter 'exit' to exit the program.");
-                case ADD -> addStudents(classRoom);
-                default -> System.out.println("Unknown command!");
-            }
-        }
+        Engine engine = new Engine();
+        engine.run();
     }
 
-    private static void addStudents(ClassRoom classRoom) {
-        System.out.println("Enter student credentials or 'back' to return:");
-        var count = 0;
-        while (true) {
-            String input = Utils.getLine();
-            if (BACK.equals(input)) {
-                System.out.printf("Total %d students have been added.\n", count);
-                return;
-            } else {
-                if (classRoom.addStudent(input)) count++;
-            }
-        }
-    }
 }
